@@ -1,0 +1,7 @@
+# Prettier ignore
+.next
+out
+build
+node_modules
+public
+prisma/migrations
