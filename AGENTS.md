@@ -1,15 +1,3 @@
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
-
----
-
 # VoteSphere — Agent Conventions
 
 ## Tech Stack
@@ -126,8 +114,8 @@ vote-sphere/
 - **No `any`.** Use `unknown` and narrow the type, or define a proper interface.
 - **No non-null assertions (`!`).** Handle the `null`/`undefined` case explicitly.
 - **Prefer `interface` over `type`** for object shapes.
-- **Use explicit type imports:** `import type { Foo } from "..."` or inline `import { type Foo } from "..."`.
-- **Named exports only.** Default exports are reserved strictly for Next.js special files (`page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx`, `template.tsx`, `default.tsx`).
+- **Always use `import type`** for type-only imports: `import type { Foo } from "..."`.
+- **Named exports only.** No default exports except for Next.js `page.tsx` and `layout.tsx` files.
 - **No `console.log`.** Use `console.warn` or `console.error` for real issues.
 
 ### File & Folder Naming
@@ -140,7 +128,7 @@ vote-sphere/
 
 ### Import Order
 
-Follow this import order convention, separated by blank lines:
+Enforced by `eslint-plugin-import`. Always in this order, separated by blank lines:
 
 ```ts
 // 1. Node built-ins
@@ -164,12 +152,10 @@ import type { Poll } from "@/types";
 ### React & Next.js
 
 - **Default to Server Components.** Only add `"use client"` when you need browser APIs, event handlers, or React hooks.
-- **Wrap client components in `<Suspense>`** when using `useSearchParams()`, React 19 `use()`, or dynamic imports (`next/dynamic`).
-- **Always await asynchronous Next.js request APIs:** `cookies()`, `headers()`, `params`, and `searchParams`.
+- **Wrap client components in `<Suspense>`** with a meaningful fallback.
 - **Use `next/image`** for all images — never `<img>`.
 - **Use `next/link`** for all internal navigation — never `<a href>`.
-- **Server Actions vs Route Handlers:** Use Server Actions for direct form mutations and RPC; use Route Handlers (`src/app/api/`) for webhooks and internal/external REST endpoints returning typed `ApiResponse<T>` using `src/lib/api/response.ts`.
-- **Tailwind CSS 4:** Uses CSS-first configuration via `@theme` in `src/app/globals.css` (no `tailwind.config.js`).
+- **Route Handlers** go in `src/app/api/`. Always return typed `ApiResponse<T>` using the helpers in `src/lib/api/response.ts`.
 
 ### State Management
 
