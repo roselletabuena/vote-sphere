@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EventPublicationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Event {
+  id                  String                 @id @default(uuid())
+  slug                String                 @unique
+  title               String
+  description         String
+  bannerUrl           String
+  startsAt            DateTime
+  endsAt              DateTime
+  publicationStatus   EventPublicationStatus @default(DRAFT)
+  draftPassphraseHash String?
+  showResultsOnClose  Boolean                @default(true)
+  organizerId         String
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
+
+  contestants         Contestant[]
+  auditLogs           EventAuditLog[]
+
+  @@index([slug])
+  @@index([organizerId])
+  @@index([publicationStatus, startsAt, endsAt])
+}
+
+model Contestant {
+  id               String   @id @default(uuid())
+  eventId          String
+  contestantNumber Int
+  name             String
+  bio              String
+  avatarUrl        String
+  voteCount        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  event            Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, contestantNumber])
+  @@index([eventId])
+}
+
+model EventAuditLog {
+  id          String   @id @default(uuid())
+  eventId     String
+  action      String
+  changedBy   String
+  previousVal Json
+  newVal      Json
+  reason      String?
+  createdAt   DateTime @default(now())
+
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
+}
