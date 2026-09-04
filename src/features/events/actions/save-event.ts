@@ -74,7 +74,7 @@ export async function saveEventAction(
   );
 
   const updatedEvent: PublicEventDto = {
-    id: currentEvent?.id || `evt_${Date.now()}`,
+    id: currentEvent?.id ?? `evt_${Date.now()}`,
     slug,
     title,
     description,

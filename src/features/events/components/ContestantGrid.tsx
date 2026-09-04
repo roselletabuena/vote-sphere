@@ -117,7 +117,7 @@ export function ContestantCard({
   return (
     <Card className="group border-border/60 bg-card/60 hover:border-primary/40 relative flex flex-col overflow-hidden rounded-2xl border shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {/* Contestant Media Header */}
-      <div className="bg-muted relative aspect-[3/4] w-full overflow-hidden">
+      <div className="bg-muted relative aspect-3/4 w-full overflow-hidden">
         <Image
           src={contestant.avatarUrl}
           alt={contestant.name}

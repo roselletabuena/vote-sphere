@@ -53,7 +53,7 @@ export function EventCountdown({
     <section
       aria-label="Contest Operational Window Countdown"
       className={cn(
-        "border-primary/20 from-card/90 via-card/50 to-primary/5 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-xl backdrop-blur-xl",
+        "border-primary/20 from-card/90 via-card/50 to-primary/5 relative overflow-hidden rounded-2xl border bg-linear-to-br p-6 shadow-xl backdrop-blur-xl",
         className,
       )}
     >
@@ -115,7 +115,7 @@ function CountdownUnit({ value, label, isLive }: CountdownUnitProps): React.JSX.
         )}
       >
         <span>{padded}</span>
-        <div className="bg-border/40 pointer-events-none absolute inset-x-0 top-1/2 h-[1px]" />
+        <div className="bg-border/40 pointer-events-none absolute inset-x-0 top-1/2 h-px" />
       </div>
       <span className="text-muted-foreground mt-1.5 text-[10px] font-medium tracking-wider uppercase sm:text-xs">
         {label}

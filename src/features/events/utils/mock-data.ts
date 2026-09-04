@@ -89,7 +89,9 @@ export const mockDraftEvent: PublicEventDto = {
 export function getMockEventBySlug(slug: string): PublicEventDto | null {
   const events = [mockScheduledEvent, mockActiveEvent, mockClosedEvent, mockDraftEvent];
   const found = events.find((e) => e.slug === slug);
-  if (!found) return null;
+  if (!found) {
+    return null;
+  }
 
   const state = deriveEventState(
     {

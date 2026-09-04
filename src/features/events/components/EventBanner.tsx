@@ -41,8 +41,8 @@ export function EventBanner({ event }: EventBannerProps): React.JSX.Element {
           className="scale-105 transform object-cover object-center transition-transform duration-700 hover:scale-100"
         />
         {/* Sleek Dark Vignette and Gradient Overlay */}
-        <div className="from-background via-background/60 absolute inset-0 bg-gradient-to-t to-transparent" />
-        <div className="from-background/80 to-background/40 absolute inset-0 bg-gradient-to-r via-transparent" />
+        <div className="from-background via-background/60 absolute inset-0 bg-linear-to-t to-transparent" />
+        <div className="from-background/80 to-background/40 absolute inset-0 bg-linear-to-r via-transparent" />
       </div>
 
       {/* Content Header Container */}

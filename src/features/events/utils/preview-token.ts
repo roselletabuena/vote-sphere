@@ -29,13 +29,31 @@ export function signPreviewToken(
 }
 
 /**
+ * Constant-time string comparison to prevent timing attacks.
+ */
+function timingSafeEqualStr(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+  let mismatch = 0;
+  for (let i = 0; i < a.length; i++) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return mismatch === 0;
+}
+
+/**
  * Verifies if a given preview token is valid, matches the event slug, and has not expired.
  */
 export function verifyPreviewToken(token: string | null | undefined, slug: string): boolean {
-  if (!token) return false;
+  if (!token) {
+    return false;
+  }
 
   const parts = token.split(".");
-  if (parts.length !== 2) return false;
+  if (parts.length !== 2) {
+    return false;
+  }
 
   const payloadBase64 = parts[0];
   const providedSig = parts[1];
@@ -46,7 +64,7 @@ export function verifyPreviewToken(token: string | null | undefined, slug: strin
 
   const expectedSig = Buffer.from(`${payloadBase64}.${PREVIEW_SECRET}`).toString("base64url");
 
-  if (providedSig !== expectedSig) {
+  if (!timingSafeEqualStr(providedSig, expectedSig)) {
     return false;
   }
 
