@@ -71,9 +71,9 @@ process.stdin.on("end", () => {
     const RAW_ENV_PATTERN = /process\.env\.([A-Z][A-Z0-9_]*)/g;
     const violations = [];
 
-    lines.forEach((line, idx) => {
+    for (const [idx, line] of lines.entries()) {
       // Skip lines with the ignore comment
-      if (line.includes("// env-validator-ignore")) return;
+      if (line.includes("// env-validator-ignore")) continue;
 
       let match;
       RAW_ENV_PATTERN.lastIndex = 0;
@@ -84,7 +84,7 @@ process.stdin.on("end", () => {
           lineContent: line.trim(),
         });
       }
-    });
+    }
 
     if (violations.length === 0) {
       process.stdout.write(JSON.stringify({}) + "\n");
