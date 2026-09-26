@@ -90,7 +90,7 @@ export const OrganizerContestantTable: React.FC<OrganizerContestantTableProps> =
           </thead>
           <tbody className="divide-y divide-white/5">
             {contestants.map((c) => (
-              <tr key={c.id} className="transition-colors hover:bg-white/[0.02]">
+              <tr key={c.id} className="transition-colors hover:bg-white/2">
                 <td className="px-2 py-3 font-mono font-bold text-amber-300">
                   #{String(c.contestantNumber).padStart(2, "0")}
                 </td>

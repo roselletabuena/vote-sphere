@@ -82,7 +82,7 @@ export const ContestantCard: React.FC<ContestantCardProps> = ({
             {contestant.hometown ? (
               <div className="flex items-center gap-1 text-slate-300">
                 <MapPin className="h-3 w-3 shrink-0 text-amber-400" />
-                <span className="max-w-[140px] truncate">{contestant.hometown}</span>
+                <span className="max-w-35 truncate">{contestant.hometown}</span>
               </div>
             ) : (
               <span className="text-slate-400 capitalize">
