@@ -1,0 +1,146 @@
+"use client";
+
+import React, { useState } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Users, AlertCircle } from "lucide-react";
+import type { ContestantDto, ContestantDivision, AwardCategoryDto } from "../types";
+import { ContestantCard } from "./ContestantCard";
+import { ContestantProfileModal } from "./ContestantProfileModal";
+import { CategoryFilterBar } from "./CategoryFilterBar";
+
+interface ContestantRosterProps {
+  initialContestants: ContestantDto[];
+  categories?: AwardCategoryDto[];
+  onVoteClick?: (contestant: ContestantDto) => void;
+}
+
+export const ContestantRoster: React.FC<ContestantRosterProps> = ({
+  initialContestants,
+  categories = [],
+  onVoteClick,
+}) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const divisionFromUrl = (searchParams.get("division") as ContestantDivision) || "ALL";
+  const categoryFromUrl = searchParams.get("category") || "ALL";
+
+  const [selectedDivision, setSelectedDivision] = useState<ContestantDivision | "ALL">(
+    divisionFromUrl,
+  );
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | "ALL">(categoryFromUrl);
+  const [activeContestant, setActiveContestant] = useState<ContestantDto | null>(null);
+
+  const updateUrlFilters = (division: ContestantDivision | "ALL", categoryId: string | "ALL") => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (division && division !== "ALL") {
+      params.set("division", division);
+    } else {
+      params.delete("division");
+    }
+
+    if (categoryId && categoryId !== "ALL") {
+      params.set("category", categoryId);
+    } else {
+      params.delete("category");
+    }
+
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  const handleSelectDivision = (division: ContestantDivision | "ALL") => {
+    setSelectedDivision(division);
+    updateUrlFilters(division, selectedCategoryId);
+  };
+
+  const handleSelectCategory = (categoryId: string | "ALL") => {
+    setSelectedCategoryId(categoryId);
+    updateUrlFilters(selectedDivision, categoryId);
+  };
+
+  // Client-side filtering for sub-50ms instant roster response
+  const filteredContestants = initialContestants.filter((c) => {
+    if (c.status !== "ACTIVE") return false;
+    if (selectedDivision !== "ALL" && c.division !== selectedDivision) {
+      return false;
+    }
+    if (selectedCategoryId !== "ALL") {
+      const isNominated = c.categories.some((cat) => cat.id === selectedCategoryId);
+      if (!isNominated) return false;
+    }
+    return true;
+  });
+
+  return (
+    <section className="w-full py-8">
+      {/* Roster Header */}
+      <div className="flex flex-col justify-between gap-4 border-b border-white/10 pb-4 md:flex-row md:items-end">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-amber-400 uppercase">
+            <Users className="h-4 w-4" />
+            <span>Official Candidate Roster</span>
+          </div>
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Meet the Candidates
+          </h2>
+        </div>
+
+        <div className="text-xs text-slate-400">
+          Showing <span className="font-semibold text-white">{filteredContestants.length}</span> of{" "}
+          <span className="font-semibold text-white">{initialContestants.length}</span> contestants
+        </div>
+      </div>
+
+      {/* Division and Category Filter Bar */}
+      <CategoryFilterBar
+        selectedDivision={selectedDivision}
+        onSelectDivision={handleSelectDivision}
+        categories={categories}
+        selectedCategoryId={selectedCategoryId}
+        onSelectCategory={handleSelectCategory}
+      />
+
+      {/* Contestant 4:5 Card Grid */}
+      {filteredContestants.length > 0 ? (
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredContestants.map((contestant) => (
+            <ContestantCard
+              key={contestant.id}
+              contestant={contestant}
+              onSelect={setActiveContestant}
+              onVoteClick={onVoteClick}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-12 flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-900/40 p-12 text-center">
+          <AlertCircle className="mb-3 h-10 w-10 text-amber-400/80" />
+          <h3 className="text-lg font-semibold text-slate-200">No candidates found</h3>
+          <p className="mt-1 max-w-sm text-xs text-slate-400">
+            There are no active contestants matching the selected division and award filters.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedDivision("ALL");
+              setSelectedCategoryId("ALL");
+              updateUrlFilters("ALL", "ALL");
+            }}
+            className="mt-4 rounded-lg bg-white/10 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+          >
+            Reset Filters
+          </button>
+        </div>
+      )}
+
+      {/* Candidate Dossier & Photo Lightbox Modal */}
+      <ContestantProfileModal
+        contestant={activeContestant}
+        isOpen={Boolean(activeContestant)}
+        onClose={() => setActiveContestant(null)}
+        onVoteClick={onVoteClick}
+      />
+    </section>
+  );
+};

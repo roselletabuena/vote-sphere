@@ -125,7 +125,7 @@ export function ContestantCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="from-background/90 via-background/20 absolute inset-0 bg-gradient-to-t to-transparent" />
+        <div className="from-background/90 via-background/20 absolute inset-0 bg-linear-to-t to-transparent" />
 
         {/* Candidate Number Badge */}
         <div className="absolute top-3 left-3">
