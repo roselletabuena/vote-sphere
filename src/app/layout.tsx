@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Sora, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import { ReactQueryProvider } from "@/components/shared/query-provider";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -42,7 +43,9 @@ export default function RootLayout({
       className={`${outfit.variable} ${sora.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="font-body flex min-h-full flex-col">
-        <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+        <ThemeProvider defaultTheme="light">
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
