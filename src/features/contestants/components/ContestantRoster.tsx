@@ -75,20 +75,27 @@ export const ContestantRoster: React.FC<ContestantRosterProps> = ({
   return (
     <section className="w-full py-8">
       {/* Roster Header */}
-      <div className="flex flex-col justify-between gap-4 border-b border-white/10 pb-4 md:flex-row md:items-end">
+      <div className="flex flex-col justify-between gap-4 border-b border-slate-200 pb-4 md:flex-row md:items-end dark:border-white/10">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-amber-400 uppercase">
+          <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-amber-700 uppercase dark:text-amber-400">
             <Users className="h-4 w-4" />
             <span>Official Candidate Roster</span>
           </div>
-          <h2 className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl dark:text-white">
             Meet the Candidates
           </h2>
         </div>
 
-        <div className="text-xs text-slate-400">
-          Showing <span className="font-semibold text-white">{filteredContestants.length}</span> of{" "}
-          <span className="font-semibold text-white">{initialContestants.length}</span> contestants
+        <div className="text-xs text-slate-600 dark:text-slate-400">
+          Showing{" "}
+          <span className="font-semibold text-slate-900 dark:text-white">
+            {filteredContestants.length}
+          </span>{" "}
+          of{" "}
+          <span className="font-semibold text-slate-900 dark:text-white">
+            {initialContestants.length}
+          </span>{" "}
+          contestants
         </div>
       </div>
 
@@ -114,10 +121,12 @@ export const ContestantRoster: React.FC<ContestantRosterProps> = ({
           ))}
         </div>
       ) : (
-        <div className="mt-12 flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-900/40 p-12 text-center">
-          <AlertCircle className="mb-3 h-10 w-10 text-amber-400/80" />
-          <h3 className="text-lg font-semibold text-slate-200">No candidates found</h3>
-          <p className="mt-1 max-w-sm text-xs text-slate-400">
+        <div className="mt-12 flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-xs dark:border-white/10 dark:bg-slate-900/40">
+          <AlertCircle className="mb-3 h-10 w-10 text-amber-600 dark:text-amber-400/80" />
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-200">
+            No candidates found
+          </h3>
+          <p className="mt-1 max-w-sm text-xs text-slate-600 dark:text-slate-400">
             There are no active contestants matching the selected division and award filters.
           </p>
           <button
@@ -127,7 +136,7 @@ export const ContestantRoster: React.FC<ContestantRosterProps> = ({
               setSelectedCategoryId("ALL");
               updateUrlFilters("ALL", "ALL");
             }}
-            className="mt-4 rounded-lg bg-white/10 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/20"
+            className="mt-4 rounded-lg bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white/10 dark:hover:bg-white/20"
           >
             Reset Filters
           </button>

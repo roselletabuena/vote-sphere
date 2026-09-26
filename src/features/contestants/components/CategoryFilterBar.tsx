@@ -31,8 +31,8 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
     <div className="flex flex-col gap-4 py-4">
       {/* Primary Division Pill Tabs */}
       <div className="flex scrollbar-none items-center gap-2 overflow-x-auto pb-1">
-        <div className="mr-1 flex shrink-0 items-center gap-1.5 text-xs font-semibold text-slate-400">
-          <Users className="h-3.5 w-3.5 text-amber-400" />
+        <div className="mr-1 flex shrink-0 items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+          <Users className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
           <span>Division:</span>
         </div>
         {DIVISIONS.map((div) => {
@@ -44,8 +44,8 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
               onClick={() => onSelectDivision(div.value)}
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-all ${
                 isSelected
-                  ? "bg-amber-400 text-slate-950 shadow-md shadow-amber-500/20"
-                  : "border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+                  ? "bg-amber-500 font-bold text-slate-950 shadow-md shadow-amber-500/25 dark:bg-amber-400"
+                  : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
               }`}
             >
               {div.label}
@@ -57,8 +57,8 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
       {/* Award Category Filter Track */}
       {categories.length > 0 && (
         <div className="flex scrollbar-none items-center gap-2 overflow-x-auto pb-1">
-          <div className="mr-1 flex shrink-0 items-center gap-1.5 text-xs font-semibold text-slate-400">
-            <Award className="h-3.5 w-3.5 text-amber-400" />
+          <div className="mr-1 flex shrink-0 items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <Award className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
             <span>Award Track:</span>
           </div>
           <button
@@ -66,8 +66,8 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
             onClick={() => onSelectCategory("ALL")}
             className={`shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all ${
               selectedCategoryId === "ALL"
-                ? "border border-amber-400/40 bg-slate-800 text-amber-300 shadow-sm"
-                : "border border-white/5 bg-slate-900/40 text-slate-400 hover:text-white"
+                ? "border border-amber-500 bg-amber-50 font-semibold text-amber-950 shadow-xs dark:border-amber-400/50 dark:bg-amber-400/20 dark:text-amber-300"
+                : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 dark:border-white/5 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:text-white"
             }`}
           >
             All Awards
@@ -81,8 +81,8 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
                 onClick={() => onSelectCategory(cat.id)}
                 className={`shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all ${
                   isSelected
-                    ? "border border-amber-400/50 bg-amber-400/20 text-amber-300 shadow-sm"
-                    : "border border-white/5 bg-slate-900/40 text-slate-400 hover:text-white"
+                    ? "border border-amber-500 bg-amber-50 font-semibold text-amber-950 shadow-xs dark:border-amber-400/50 dark:bg-amber-400/20 dark:text-amber-300"
+                    : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 dark:border-white/5 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:text-white"
                 }`}
               >
                 {cat.name}
