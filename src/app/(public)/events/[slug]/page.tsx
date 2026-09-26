@@ -22,14 +22,14 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
   if (!event) {
     return {
-      title: "Event Not Found | VoteSphere",
+      title: "Event Not Found | Electa",
       description: "The requested voting event could not be found.",
     };
   }
 
   if (event.operationalState === "Draft") {
     return {
-      title: `[Draft Preview] ${event.title} | VoteSphere`,
+      title: `[Draft Preview] ${event.title} | Electa`,
       description: event.description,
     };
   }

@@ -1,19 +1,19 @@
-# Junior Developer Onboarding Guide: VoteSphere, AntiGravity & Spec-Driven Development
+# Junior Developer Onboarding Guide: Electa, AntiGravity & Spec-Driven Development
 
-> **Confluence Live Version:** [View on Confluence](https://the-three-devsketeers.atlassian.net/wiki/spaces/SD/pages/98465/Junior+Developer+Onboarding+Guide+VoteSphere+AntiGravity+Spec-Driven+Development)  
+> **Confluence Live Version:** [View on Confluence](https://the-three-devsketeers.atlassian.net/wiki/spaces/SD/pages/98465/Junior+Developer+Onboarding+Guide+Electa+AntiGravity+Spec-Driven+Development)  
 > **Jira Epics:**
 >
 > - [VS-5: Junior Developer Onboarding & Engineering Enablement](https://the-three-devsketeers.atlassian.net/browse/VS-5)
 > - [VS-10: Database Infrastructure & Supabase Integration](https://the-three-devsketeers.atlassian.net/browse/VS-10)
 >
-> **Welcome to the VoteSphere Engineering Team!**  
+> **Welcome to the Electa Engineering Team!**  
 > This handbook is designed specifically for junior engineers joining our team. Whether you are new to Git, Jira, Confluence, React, Next.js, or cloud infrastructure, this guide will walk you through our tools, our engineering philosophy, and how we work day-to-day.
 
 ---
 
 ## 1. Welcome & Engineering Philosophy
 
-At VoteSphere, we write production-grade software with clarity, confidence, and precision. You may have experienced coding environments where developers jump straight into source files and guess requirements as they go. **We do not do that here.**
+At Electa, we write production-grade software with clarity, confidence, and precision. You may have experienced coding environments where developers jump straight into source files and guess requirements as they go. **We do not do that here.**
 
 Our engineering practice is founded on three core pillars:
 
@@ -30,7 +30,7 @@ Our engineering practice is founded on three core pillars:
 
 Here is the quick mental model for the core tools you will encounter:
 
-| Tool                      | What It Is                            | How We Use It in VoteSphere                                                                                                                                                           |
+| Tool                      | What It Is                            | How We Use It in Electa                                                                                                                                                               |
 | :------------------------ | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Git & GitHub**          | Code repository & version control     | Stores all project source code. You will clone the repository, work in feature branches, and submit **Pull Requests (PRs)** for peer review before code is merged.                    |
 | **Jira**                  | Project & sprint tracking             | Our team to-do board. You will find tasks, read user stories and acceptance criteria, and move tickets through stages: `To Do` &rarr; `In Progress` &rarr; `In Review` &rarr; `Done`. |
@@ -54,7 +54,7 @@ We have created dedicated epics and tickets on the Jira board for you to practic
   - **[VS-6](https://the-three-devsketeers.atlassian.net/browse/VS-6):** `[ONBOARDING] Jira Fundamentals: Agile Board, Ticket Lifecycles & PR Linking`
   - **[VS-7](https://the-three-devsketeers.atlassian.net/browse/VS-7):** `[ONBOARDING] Confluence Documentation: Team Wiki Navigation & Architecture Reading`
   - **[VS-8](https://the-three-devsketeers.atlassian.net/browse/VS-8):** `[ONBOARDING] Spec-Driven Development (SDD): Lifecycle & AntiGravity Workflow`
-  - **[VS-9](https://the-three-devsketeers.atlassian.net/browse/VS-9):** `[SPIKE] Codebase Exploration with Graphify: Generate & Navigate VoteSphere Knowledge Graph`
+  - **[VS-9](https://the-three-devsketeers.atlassian.net/browse/VS-9):** `[SPIKE] Codebase Exploration with Graphify: Generate & Navigate Electa Knowledge Graph`
 
 ### 🗄️ Epic 2: Database Infrastructure & Supabase Integration (VS-10)
 
@@ -73,7 +73,7 @@ We have created dedicated epics and tickets on the Jira board for you to practic
 > **Specification &rarr; Plan &rarr; Tasks &rarr; Code &rarr; Verification**  
 > Never write implementation code without an approved specification and plan.
 
-In VoteSphere, every feature resides in the `specs/` directory (for example: `specs/001-event-operational-window/`):
+In Electa, every feature resides in the `specs/` directory (for example: `specs/001-event-operational-window/`):
 
 ### The 3 Stages of SDD
 
@@ -85,7 +85,7 @@ In VoteSphere, every feature resides in the `specs/` directory (for example: `sp
 2. **The Implementation Plan (`plan.md`)**:
    - Describes **how** we will build it technically.
    - Identifies which Next.js pages, Server Components, Client Components, or Prisma schemas need to be touched.
-   - Verifies compliance with the **VoteSphere Constitution** (located at `.specify/memory/constitution.md`).
+   - Verifies compliance with the **Electa Constitution** (located at `.specify/memory/constitution.md`).
 
 3. **The Task Checklist (`tasks.md`)**:
    - Breaks the implementation plan into discrete, bite-sized tasks.
@@ -137,7 +137,7 @@ Follow these steps on your first day to get the application running locally:
   npm run dev
   ```
 
-  Open [http://localhost:3000](http://localhost:3000) in your browser. You should see the VoteSphere home screen!
+  Open [http://localhost:3000](http://localhost:3000) in your browser. You should see the Electa home screen!
 
 - [ ] **Step 6: Run Quality Checks**
       Confirm that your local environment passes all checks:
@@ -186,7 +186,7 @@ Whenever you work on a task, follow this standard lifecycle:
 
 ---
 
-## 7. Non-Negotiable Rules (VoteSphere Constitution)
+## 7. Non-Negotiable Rules (Electa Constitution)
 
 All code merged into `main` must adhere to our team Constitution (`.specify/memory/constitution.md`):
 
@@ -202,7 +202,7 @@ All code merged into `main` must adhere to our team Constitution (`.specify/memo
 > **The 20-Minute Rule:**  
 > If you are stuck on an issue for more than 20 minutes after attempting to research it and consulting AntiGravity, reach out for help! Asking questions is expected and welcomed.
 
-- **Team Chat / Slack:** `#team-votesphere`
+- **Team Chat / Slack:** `#team-electa`
 - **Technical Q&A:** `#dev-help`
 - **Daily Standup:** Monday–Friday at 10:00 AM
 - **Mentorship:** Your assigned buddy is available for daily 1-on-1 pairing sessions.

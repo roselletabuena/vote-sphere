@@ -1,4 +1,4 @@
-# VoteSphere — Agent Conventions
+# Electa — Agent Conventions
 
 ## Tech Stack
 

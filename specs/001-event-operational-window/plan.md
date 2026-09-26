@@ -6,7 +6,7 @@
 
 ## Summary
 
-Implement Event Profile and Operational Window management in VoteSphere. This establishes the public-facing contest page (`/events/[slug]`), real-time synchronized countdown timers, automatic zero-refresh lifecycle transitions across 4 operational states (`Draft`, `Scheduled`, `Active`, `Closed`), draft preview authorization (organizer login + optional passphrase), and immutable administrative timeline adjustment audit logging.
+Implement Event Profile and Operational Window management in Electa. This establishes the public-facing contest page (`/events/[slug]`), real-time synchronized countdown timers, automatic zero-refresh lifecycle transitions across 4 operational states (`Draft`, `Scheduled`, `Active`, `Closed`), draft preview authorization (organizer login + optional passphrase), and immutable administrative timeline adjustment audit logging.
 
 ## Technical Context
 

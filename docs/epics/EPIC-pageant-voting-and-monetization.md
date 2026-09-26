@@ -1,4 +1,4 @@
-# [EPIC-VS-20] VoteSphere: Next-Gen Pageant & Event Monetization Platform
+# [EPIC-VS-20] Electa: Next-Gen Pageant & Event Monetization Platform
 
 > **Jira Epic Key**: `VS-20`  
 > **Type**: Epic  
@@ -13,7 +13,7 @@
 
 Build an ad-free, real-time, luxury event voting and monetization platform for beauty pageants, university coronation nights, and community awards.
 
-VoteSphere disrupts the legacy market (Pageant Vote PH) by replacing outdated 2015-era architecture and intrusive Google AdSense banners with a **Next.js 16 + Tailwind 4** luxury design system, **Universal Omnichannel Auth** (eliminating Facebook-only lock-in), **Native Philippine Payment Rails** (QR Ph, GCash, Maya), **Real-Time Supabase Leaderboards**, and **Viral Social Share Loops**.
+Electa disrupts the legacy market (Pageant Vote PH) by replacing outdated 2015-era architecture and intrusive Google AdSense banners with a **Next.js 16 + Tailwind 4** luxury design system, **Universal Omnichannel Auth** (eliminating Facebook-only lock-in), **Native Philippine Payment Rails** (QR Ph, GCash, Maya), **Real-Time Supabase Leaderboards**, and **Viral Social Share Loops**.
 
 ---
 
@@ -37,6 +37,7 @@ VoteSphere disrupts the legacy market (Pageant Vote PH) by replacing outdated 20
 ```mermaid
 graph TD
     EPIC[VS-20: Next-Gen Pageant & Monetization Platform]
+    EPIC --> US0[VS-28: Platform Rebrand to Electa]
     EPIC --> US1[VS-21: Contestant Profiles & Multi-Media Showcase]
     EPIC --> US2[VS-22: Core Voting Engine & Anti-Fraud Suite]
     EPIC --> US3[VS-23: Philippine Payment Rails & Dynamic QR Ph Engine]
@@ -130,7 +131,7 @@ graph TD
 - **Story Points**: 5
 - **Description**: As a pageant organizer, I want a self-service dashboard to monitor real-time gross vote revenues, gateway fees, platform commissions, net payout balance, and fraud logs.
 - **Acceptance Criteria**:
-  - [ ] Real-time financial dashboard: Gross Sales, Payment Gateway Processing Fees, VoteSphere Take-Rate (12%), Net Organizer Revenue.
+  - [ ] Real-time financial dashboard: Gross Sales, Payment Gateway Processing Fees, Electa Take-Rate (12%), Net Organizer Revenue.
   - [ ] Exportable audit logs (CSV / PDF) with timestamped vote transactions, payment references, and voter IP hashes.
   - [ ] Contestant management panel (add, edit, hide contestants, re-order candidate numbers).
   - [ ] Payout request interface with automated bank / GCash disbursement tracking.

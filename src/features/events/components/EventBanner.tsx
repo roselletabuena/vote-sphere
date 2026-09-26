@@ -51,7 +51,7 @@ export function EventBanner({ event }: EventBannerProps): React.JSX.Element {
           <EventStateBadge state={event.operationalState} />
           <span className="bg-secondary/80 text-secondary-foreground border-border/40 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md">
             <Globe2 className="text-muted-foreground size-3" />
-            vote-sphere.io/events/{event.slug}
+            electa.ph/events/{event.slug}
           </span>
           <span className="bg-primary/10 text-primary border-primary/20 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium">
             <Sparkles className="text-primary size-3" />

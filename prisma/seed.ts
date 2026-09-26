@@ -223,7 +223,7 @@ async function main() {
       startsAt: new Date(now + 1000 * 60 * 60 * 24 * 10),
       endsAt: new Date(now + 1000 * 60 * 60 * 24 * 14),
       publicationStatus: "DRAFT",
-      draftPassphraseHash: "votesphere2026",
+      draftPassphraseHash: "electa2026",
       showResultsOnClose: false,
       organizerId,
       contestants: {

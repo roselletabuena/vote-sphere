@@ -15,14 +15,15 @@ export async function getSession(): Promise<UserSession | null> {
     if (token === "mock-organizer-token" || token.includes("organizer")) {
       return {
         userId: "org_12345",
-        email: "organizer@votesphere.com",
+        email: "organizer@electa.ph",
         role: "ORGANIZER",
       };
     }
   }
 
   const cookieStore = await cookies();
-  const authCookie = cookieStore.get("vs_auth_session")?.value;
+  const authCookie =
+    cookieStore.get("electa_auth_session")?.value || cookieStore.get("vs_auth_session")?.value;
   if (authCookie) {
     try {
       const parsed = JSON.parse(authCookie) as UserSession;

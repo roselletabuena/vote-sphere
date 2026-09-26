@@ -5,7 +5,7 @@ import prettier from "eslint-config-prettier/flat";
 import unicorn from "eslint-plugin-unicorn";
 
 /**
- * ESLint flat config for VoteSphere.
+ * ESLint flat config for Electa.
  *
  * Uses the official Next.js 16 recommended setup:
  *  - eslint-config-next/core-web-vitals  (Next.js + React + react-hooks)

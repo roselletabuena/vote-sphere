@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VoteSphere | Universal Contest & Voting Engine",
+  title: "Electa | Universal Contest & Voting Engine",
   description:
     "Architectural high-fidelity voting and pageant engine designed with the Luminous Opal design system.",
 };

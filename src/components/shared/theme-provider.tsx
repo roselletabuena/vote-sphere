@@ -31,7 +31,8 @@ function applyDocumentTheme(currentTheme: Theme) {
 export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("votesphere-theme") as Theme | null;
+      const stored = (localStorage.getItem("electa-theme") ||
+        localStorage.getItem("votesphere-theme")) as Theme | null;
       if (stored === "light" || stored === "dark") {
         return stored;
       }
@@ -45,13 +46,13 @@ export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProvide
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem("votesphere-theme", newTheme);
+    localStorage.setItem("electa-theme", newTheme);
   }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeState((prev) => {
       const next = prev === "light" ? "dark" : "light";
-      localStorage.setItem("votesphere-theme", next);
+      localStorage.setItem("electa-theme", next);
       return next;
     });
   }, []);
@@ -63,7 +64,7 @@ export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProvide
           __html: `
             (function() {
               try {
-                var stored = localStorage.getItem('votesphere-theme');
+                var stored = localStorage.getItem('electa-theme') || localStorage.getItem('votesphere-theme');
                 if (stored === 'dark') {
                   document.documentElement.classList.add('dark');
                 } else {
