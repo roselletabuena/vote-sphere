@@ -1,6 +1,6 @@
 ---
 name: "speckit-implement"
-description: "Execute the implementation plan by processing and executing all tasks defined in tasks.md"
+description: "Execute the implementation plan by processing and executing all tasks defined in tasks.md, with automated Jira ticket transition and implementation comment synchronization."
 compatibility: "Requires spec-kit project structure with .specify/ directory"
 metadata:
   author: "github-spec-kit"
@@ -177,6 +177,46 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Validate that tests pass and coverage meets requirements
    - Confirm the implementation follows the technical plan
 
+10. **Automated Jira Ticket Synchronization & Implementation Comment Workflow**:
+    - **Step 10.1 — Detect Jira Ticket Key**:
+      - Inspect `spec.md` header for `**Jira Key**: <KEY>` or `Jira Key: <KEY>`.
+      - Inspect `tasks.md`, `plan.md`, or `docs/tickets/` for issue keys matching `VS-\d+` or `[A-Z]+-\d+`.
+      - Inspect the current git branch name or recent git commits (`git log -n 5 --oneline`) for Jira keys in brackets (e.g., `[VS-19]`).
+      - Check if the user specified a Jira ticket in `$ARGUMENTS`.
+      - _Fallback_: If no Jira ticket key is found, log an informational notice (`"No Jira key detected for this feature; skipping Jira ticket sync."`) and proceed to Step 11.
+    - **Step 10.2 — Assign & Transition Ticket**:
+      - Call `atlassianUserInfo` to resolve the current active developer's `accountId` and assign the issue if unassigned.
+      - Inspect available transitions via `listJiraIssueTransitions` on the ticket.
+      - Transition the ticket to **"Done"** (transition ID typically `51` or named `Done`), or **"In Review"** (transition ID `31`) if formal review gating is configured.
+    - **Step 10.3 — Post Implementation Changes & Traceability Comment**:
+      - Generate a structured markdown completion report and post it via `addOrEditJiraIssueComment`:
+        ```markdown
+        ### ✅ Implementation Completed via Spec-Kit (`speckit-implement`)
+
+        All planned tasks for this feature have been executed, verified, and merged.
+
+        #### 📋 Fulfilled Acceptance Criteria
+
+        - [x] <Criterion 1 from spec.md>
+        - [x] <Criterion 2 from spec.md>
+
+        #### 🛠️ Completed Tasks (from tasks.md)
+
+        - [x] **T001**: <Task 1 summary>
+        - [x] **T002**: <Task 2 summary>
+
+        #### 📦 Associated Git Commits
+
+        - `<commit-sha>`: <commit message>
+        - `<commit-sha>`: <commit message>
+
+        #### 🧪 Test Verification
+
+        - <Test results, e.g., "Vitest: X passed, 0 failed">
+        ```
+    - **Step 10.4 — Log Output**:
+      - Output a clear confirmation in the agent transcript with the Jira ticket URL: `Updated Jira ticket <KEY>: Transitioned to Done and posted implementation changelog.`
+
 Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/speckit-tasks` first to regenerate the task list.
 
 ## Mandatory Post-Execution Hooks
@@ -217,11 +257,12 @@ Check if `.specify/extensions.yml` exists in the project root.
 
 ## Completion Report
 
-Report final status with summary of completed work.
+Report final status with summary of completed work, including Jira ticket link and transition status.
 
 ## Done When
 
 - [ ] All tasks in tasks.md completed and marked `[X]`
 - [ ] Implementation validated against specification, plan, and test coverage
+- [ ] Associated Jira ticket transitioned to Done/In Review and updated with implementation changelog comment (if Jira key exists)
 - [ ] Extension hooks dispatched or skipped according to the rules in Mandatory Post-Execution Hooks above
 - [ ] Completion reported to user with summary of completed work
