@@ -16,7 +16,7 @@ export const VideoReelPlayer: React.FC<VideoReelPlayerProps> = ({ media, candida
 
   if (!parsed) {
     return (
-      <div className="flex aspect-9/16 max-h-[500px] w-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-900 p-6 text-center">
+      <div className="flex aspect-9/16 max-h-125 w-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-900 p-6 text-center">
         <VideoOff className="mb-2 h-10 w-10 text-slate-500" />
         <p className="text-sm font-medium text-slate-400">Video preview unavailable</p>
         <a
@@ -33,7 +33,7 @@ export const VideoReelPlayer: React.FC<VideoReelPlayerProps> = ({ media, candida
   }
 
   return (
-    <div className="relative mx-auto aspect-9/16 max-h-[550px] w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl">
+    <div className="relative mx-auto aspect-9/16 max-h-137.5 w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl">
       {!isPlaying ? (
         <div
           onClick={() => setIsPlaying(true)}

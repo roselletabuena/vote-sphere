@@ -112,7 +112,7 @@ export const OrganizerContestantTable: React.FC<OrganizerContestantTableProps> =
                 </td>
                 <td className="px-2 py-3 text-slate-300 capitalize">{c.division.toLowerCase()}</td>
                 <td className="px-2 py-3">
-                  <div className="flex max-w-[200px] flex-wrap gap-1">
+                  <div className="flex max-w-50 flex-wrap gap-1">
                     {c.categories.length > 0 ? (
                       c.categories.map((cat) => (
                         <span
