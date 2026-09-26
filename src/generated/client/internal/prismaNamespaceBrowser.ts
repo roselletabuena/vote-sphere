@@ -50,6 +50,9 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
   Event: "Event",
   Contestant: "Contestant",
+  ContestantMedia: "ContestantMedia",
+  AwardCategory: "AwardCategory",
+  ContestantCategoryAssignment: "ContestantCategoryAssignment",
   EventAuditLog: "EventAuditLog",
 } as const;
 
@@ -92,8 +95,16 @@ export const ContestantScalarFieldEnum = {
   eventId: "eventId",
   contestantNumber: "contestantNumber",
   name: "name",
+  division: "division",
+  status: "status",
+  hometown: "hometown",
+  heightCm: "heightCm",
   bio: "bio",
+  advocacy: "advocacy",
   avatarUrl: "avatarUrl",
+  instagramUrl: "instagramUrl",
+  tiktokUrl: "tiktokUrl",
+  facebookUrl: "facebookUrl",
   voteCount: "voteCount",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -101,6 +112,45 @@ export const ContestantScalarFieldEnum = {
 
 export type ContestantScalarFieldEnum =
   (typeof ContestantScalarFieldEnum)[keyof typeof ContestantScalarFieldEnum];
+
+export const ContestantMediaScalarFieldEnum = {
+  id: "id",
+  contestantId: "contestantId",
+  mediaType: "mediaType",
+  url: "url",
+  embedPlatform: "embedPlatform",
+  embedId: "embedId",
+  displayOrder: "displayOrder",
+  aspectRatio: "aspectRatio",
+  isCover: "isCover",
+  createdAt: "createdAt",
+} as const;
+
+export type ContestantMediaScalarFieldEnum =
+  (typeof ContestantMediaScalarFieldEnum)[keyof typeof ContestantMediaScalarFieldEnum];
+
+export const AwardCategoryScalarFieldEnum = {
+  id: "id",
+  eventId: "eventId",
+  name: "name",
+  description: "description",
+  isVotingOpen: "isVotingOpen",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type AwardCategoryScalarFieldEnum =
+  (typeof AwardCategoryScalarFieldEnum)[keyof typeof AwardCategoryScalarFieldEnum];
+
+export const ContestantCategoryAssignmentScalarFieldEnum = {
+  id: "id",
+  contestantId: "contestantId",
+  awardCategoryId: "awardCategoryId",
+  createdAt: "createdAt",
+} as const;
+
+export type ContestantCategoryAssignmentScalarFieldEnum =
+  (typeof ContestantCategoryAssignmentScalarFieldEnum)[keyof typeof ContestantCategoryAssignmentScalarFieldEnum];
 
 export const EventAuditLogScalarFieldEnum = {
   id: "id",

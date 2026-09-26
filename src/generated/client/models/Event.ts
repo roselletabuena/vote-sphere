@@ -244,6 +244,7 @@ export type EventWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string;
   contestants?: Prisma.ContestantListRelationFilter;
+  awardCategories?: Prisma.AwardCategoryListRelationFilter;
   auditLogs?: Prisma.EventAuditLogListRelationFilter;
 };
 
@@ -262,6 +263,7 @@ export type EventOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   contestants?: Prisma.ContestantOrderByRelationAggregateInput;
+  awardCategories?: Prisma.AwardCategoryOrderByRelationAggregateInput;
   auditLogs?: Prisma.EventAuditLogOrderByRelationAggregateInput;
 };
 
@@ -285,6 +287,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string;
     contestants?: Prisma.ContestantListRelationFilter;
+    awardCategories?: Prisma.AwardCategoryListRelationFilter;
     auditLogs?: Prisma.EventAuditLogListRelationFilter;
   },
   "id" | "slug"
@@ -344,6 +347,7 @@ export type EventCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   contestants?: Prisma.ContestantCreateNestedManyWithoutEventInput;
+  awardCategories?: Prisma.AwardCategoryCreateNestedManyWithoutEventInput;
   auditLogs?: Prisma.EventAuditLogCreateNestedManyWithoutEventInput;
 };
 
@@ -362,6 +366,7 @@ export type EventUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   contestants?: Prisma.ContestantUncheckedCreateNestedManyWithoutEventInput;
+  awardCategories?: Prisma.AwardCategoryUncheckedCreateNestedManyWithoutEventInput;
   auditLogs?: Prisma.EventAuditLogUncheckedCreateNestedManyWithoutEventInput;
 };
 
@@ -381,6 +386,7 @@ export type EventUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   contestants?: Prisma.ContestantUpdateManyWithoutEventNestedInput;
+  awardCategories?: Prisma.AwardCategoryUpdateManyWithoutEventNestedInput;
   auditLogs?: Prisma.EventAuditLogUpdateManyWithoutEventNestedInput;
 };
 
@@ -400,6 +406,7 @@ export type EventUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   contestants?: Prisma.ContestantUncheckedUpdateManyWithoutEventNestedInput;
+  awardCategories?: Prisma.AwardCategoryUncheckedUpdateManyWithoutEventNestedInput;
   auditLogs?: Prisma.EventAuditLogUncheckedUpdateManyWithoutEventNestedInput;
 };
 
@@ -552,6 +559,32 @@ export type EventUpdateOneRequiredWithoutContestantsNestedInput = {
   >;
 };
 
+export type EventCreateNestedOneWithoutAwardCategoriesInput = {
+  create?: Prisma.XOR<
+    Prisma.EventCreateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedCreateWithoutAwardCategoriesInput
+  >;
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutAwardCategoriesInput;
+  connect?: Prisma.EventWhereUniqueInput;
+};
+
+export type EventUpdateOneRequiredWithoutAwardCategoriesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.EventCreateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedCreateWithoutAwardCategoriesInput
+  >;
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutAwardCategoriesInput;
+  upsert?: Prisma.EventUpsertWithoutAwardCategoriesInput;
+  connect?: Prisma.EventWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.EventUpdateToOneWithWhereWithoutAwardCategoriesInput,
+      Prisma.EventUpdateWithoutAwardCategoriesInput
+    >,
+    Prisma.EventUncheckedUpdateWithoutAwardCategoriesInput
+  >;
+};
+
 export type EventCreateNestedOneWithoutAuditLogsInput = {
   create?: Prisma.XOR<
     Prisma.EventCreateWithoutAuditLogsInput,
@@ -592,6 +625,7 @@ export type EventCreateWithoutContestantsInput = {
   organizerId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  awardCategories?: Prisma.AwardCategoryCreateNestedManyWithoutEventInput;
   auditLogs?: Prisma.EventAuditLogCreateNestedManyWithoutEventInput;
 };
 
@@ -609,6 +643,7 @@ export type EventUncheckedCreateWithoutContestantsInput = {
   organizerId: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  awardCategories?: Prisma.AwardCategoryUncheckedCreateNestedManyWithoutEventInput;
   auditLogs?: Prisma.EventAuditLogUncheckedCreateNestedManyWithoutEventInput;
 };
 
@@ -655,6 +690,7 @@ export type EventUpdateWithoutContestantsInput = {
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  awardCategories?: Prisma.AwardCategoryUpdateManyWithoutEventNestedInput;
   auditLogs?: Prisma.EventAuditLogUpdateManyWithoutEventNestedInput;
 };
 
@@ -673,6 +709,109 @@ export type EventUncheckedUpdateWithoutContestantsInput = {
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  awardCategories?: Prisma.AwardCategoryUncheckedUpdateManyWithoutEventNestedInput;
+  auditLogs?: Prisma.EventAuditLogUncheckedUpdateManyWithoutEventNestedInput;
+};
+
+export type EventCreateWithoutAwardCategoriesInput = {
+  id?: string;
+  slug: string;
+  title: string;
+  description: string;
+  bannerUrl: string;
+  startsAt: Date | string;
+  endsAt: Date | string;
+  publicationStatus?: $Enums.EventPublicationStatus;
+  draftPassphraseHash?: string | null;
+  showResultsOnClose?: boolean;
+  organizerId: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  contestants?: Prisma.ContestantCreateNestedManyWithoutEventInput;
+  auditLogs?: Prisma.EventAuditLogCreateNestedManyWithoutEventInput;
+};
+
+export type EventUncheckedCreateWithoutAwardCategoriesInput = {
+  id?: string;
+  slug: string;
+  title: string;
+  description: string;
+  bannerUrl: string;
+  startsAt: Date | string;
+  endsAt: Date | string;
+  publicationStatus?: $Enums.EventPublicationStatus;
+  draftPassphraseHash?: string | null;
+  showResultsOnClose?: boolean;
+  organizerId: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  contestants?: Prisma.ContestantUncheckedCreateNestedManyWithoutEventInput;
+  auditLogs?: Prisma.EventAuditLogUncheckedCreateNestedManyWithoutEventInput;
+};
+
+export type EventCreateOrConnectWithoutAwardCategoriesInput = {
+  where: Prisma.EventWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.EventCreateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedCreateWithoutAwardCategoriesInput
+  >;
+};
+
+export type EventUpsertWithoutAwardCategoriesInput = {
+  update: Prisma.XOR<
+    Prisma.EventUpdateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedUpdateWithoutAwardCategoriesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.EventCreateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedCreateWithoutAwardCategoriesInput
+  >;
+  where?: Prisma.EventWhereInput;
+};
+
+export type EventUpdateToOneWithWhereWithoutAwardCategoriesInput = {
+  where?: Prisma.EventWhereInput;
+  data: Prisma.XOR<
+    Prisma.EventUpdateWithoutAwardCategoriesInput,
+    Prisma.EventUncheckedUpdateWithoutAwardCategoriesInput
+  >;
+};
+
+export type EventUpdateWithoutAwardCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  slug?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  bannerUrl?: Prisma.StringFieldUpdateOperationsInput | string;
+  startsAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endsAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  publicationStatus?:
+    Prisma.EnumEventPublicationStatusFieldUpdateOperationsInput | $Enums.EventPublicationStatus;
+  draftPassphraseHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  showResultsOnClose?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  organizerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  contestants?: Prisma.ContestantUpdateManyWithoutEventNestedInput;
+  auditLogs?: Prisma.EventAuditLogUpdateManyWithoutEventNestedInput;
+};
+
+export type EventUncheckedUpdateWithoutAwardCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  slug?: Prisma.StringFieldUpdateOperationsInput | string;
+  title?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  bannerUrl?: Prisma.StringFieldUpdateOperationsInput | string;
+  startsAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endsAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  publicationStatus?:
+    Prisma.EnumEventPublicationStatusFieldUpdateOperationsInput | $Enums.EventPublicationStatus;
+  draftPassphraseHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  showResultsOnClose?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  organizerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  contestants?: Prisma.ContestantUncheckedUpdateManyWithoutEventNestedInput;
   auditLogs?: Prisma.EventAuditLogUncheckedUpdateManyWithoutEventNestedInput;
 };
 
@@ -691,6 +830,7 @@ export type EventCreateWithoutAuditLogsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   contestants?: Prisma.ContestantCreateNestedManyWithoutEventInput;
+  awardCategories?: Prisma.AwardCategoryCreateNestedManyWithoutEventInput;
 };
 
 export type EventUncheckedCreateWithoutAuditLogsInput = {
@@ -708,6 +848,7 @@ export type EventUncheckedCreateWithoutAuditLogsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   contestants?: Prisma.ContestantUncheckedCreateNestedManyWithoutEventInput;
+  awardCategories?: Prisma.AwardCategoryUncheckedCreateNestedManyWithoutEventInput;
 };
 
 export type EventCreateOrConnectWithoutAuditLogsInput = {
@@ -754,6 +895,7 @@ export type EventUpdateWithoutAuditLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   contestants?: Prisma.ContestantUpdateManyWithoutEventNestedInput;
+  awardCategories?: Prisma.AwardCategoryUpdateManyWithoutEventNestedInput;
 };
 
 export type EventUncheckedUpdateWithoutAuditLogsInput = {
@@ -772,6 +914,7 @@ export type EventUncheckedUpdateWithoutAuditLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   contestants?: Prisma.ContestantUncheckedUpdateManyWithoutEventNestedInput;
+  awardCategories?: Prisma.AwardCategoryUncheckedUpdateManyWithoutEventNestedInput;
 };
 
 /**
@@ -780,6 +923,7 @@ export type EventUncheckedUpdateWithoutAuditLogsInput = {
 
 export type EventCountOutputType = {
   contestants: number;
+  awardCategories: number;
   auditLogs: number;
 };
 
@@ -787,6 +931,7 @@ export type EventCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   contestants?: boolean | EventCountOutputTypeCountContestantsArgs;
+  awardCategories?: boolean | EventCountOutputTypeCountAwardCategoriesArgs;
   auditLogs?: boolean | EventCountOutputTypeCountAuditLogsArgs;
 };
 
@@ -809,6 +954,15 @@ export type EventCountOutputTypeCountContestantsArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.ContestantWhereInput;
+};
+
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountAwardCategoriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.AwardCategoryWhereInput;
 };
 
 /**
@@ -838,6 +992,7 @@ export type EventSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     contestants?: boolean | Prisma.Event$contestantsArgs<ExtArgs>;
+    awardCategories?: boolean | Prisma.Event$awardCategoriesArgs<ExtArgs>;
     auditLogs?: boolean | Prisma.Event$auditLogsArgs<ExtArgs>;
     _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -924,6 +1079,7 @@ export type EventInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   contestants?: boolean | Prisma.Event$contestantsArgs<ExtArgs>;
+  awardCategories?: boolean | Prisma.Event$awardCategoriesArgs<ExtArgs>;
   auditLogs?: boolean | Prisma.Event$auditLogsArgs<ExtArgs>;
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -940,6 +1096,7 @@ export type $EventPayload<
   name: "Event";
   objects: {
     contestants: Prisma.$ContestantPayload<ExtArgs>[];
+    awardCategories: Prisma.$AwardCategoryPayload<ExtArgs>[];
     auditLogs: Prisma.$EventAuditLogPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1478,6 +1635,17 @@ export interface Prisma__EventClient<
       >
     | Null
   >;
+  awardCategories<T extends Prisma.Event$awardCategoriesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Event$awardCategoriesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$AwardCategoryPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   auditLogs<T extends Prisma.Event$auditLogsArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.Event$auditLogsArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
@@ -1976,6 +2144,33 @@ export type Event$contestantsArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.ContestantScalarFieldEnum | Prisma.ContestantScalarFieldEnum[];
+};
+
+/**
+ * Event.awardCategories
+ */
+export type Event$awardCategoriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the AwardCategory
+   */
+  select?: Prisma.AwardCategorySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the AwardCategory
+   */
+  omit?: Prisma.AwardCategoryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AwardCategoryInclude<ExtArgs> | null;
+  where?: Prisma.AwardCategoryWhereInput;
+  orderBy?:
+    Prisma.AwardCategoryOrderByWithRelationInput | Prisma.AwardCategoryOrderByWithRelationInput[];
+  cursor?: Prisma.AwardCategoryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.AwardCategoryScalarFieldEnum | Prisma.AwardCategoryScalarFieldEnum[];
 };
 
 /**

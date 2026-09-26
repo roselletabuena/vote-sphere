@@ -13,6 +13,32 @@ enum EventPublicationStatus {
   ARCHIVED
 }
 
+enum ContestantDivision {
+  FEMALE
+  MALE
+  LGBTQ
+  TEEN
+}
+
+enum ContestantStatus {
+  ACTIVE
+  HIDDEN
+  WITHDRAWN
+}
+
+enum MediaType {
+  PHOTO
+  VIDEO_EMBED
+}
+
+enum EmbedPlatform {
+  YOUTUBE
+  TIKTOK
+  INSTAGRAM
+  FACEBOOK
+  NONE
+}
+
 model Event {
   id                  String                 @id @default(uuid())
   slug                String                 @unique
@@ -29,6 +55,7 @@ model Event {
   updatedAt           DateTime               @updatedAt
 
   contestants         Contestant[]
+  awardCategories     AwardCategory[]
   auditLogs           EventAuditLog[]
 
   @@index([slug])
@@ -37,20 +64,79 @@ model Event {
 }
 
 model Contestant {
-  id               String   @id @default(uuid())
+  id               String                         @id @default(uuid())
   eventId          String
   contestantNumber Int
   name             String
-  bio              String
+  division         ContestantDivision             @default(FEMALE)
+  status           ContestantStatus               @default(ACTIVE)
+  hometown         String?
+  heightCm         Int?
+  bio              String?
+  advocacy         String?
   avatarUrl        String
-  voteCount        Int      @default(0)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  instagramUrl     String?
+  tiktokUrl        String?
+  facebookUrl      String?
+  voteCount        Int                            @default(0)
+  createdAt        DateTime                       @default(now())
+  updatedAt        DateTime                       @updatedAt
 
-  event            Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  event            Event                          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  media            ContestantMedia[]
+  categories       ContestantCategoryAssignment[]
 
-  @@unique([eventId, contestantNumber])
+  @@unique([eventId, division, contestantNumber])
   @@index([eventId])
+  @@index([eventId, status])
+  @@index([eventId, division])
+}
+
+model ContestantMedia {
+  id            String         @id @default(uuid())
+  contestantId  String
+  mediaType     MediaType      @default(PHOTO)
+  url           String
+  embedPlatform EmbedPlatform  @default(NONE)
+  embedId       String?
+  displayOrder  Int            @default(0)
+  aspectRatio   String         @default("4:5")
+  isCover       Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+
+  contestant    Contestant     @relation(fields: [contestantId], references: [id], onDelete: Cascade)
+
+  @@index([contestantId, displayOrder])
+}
+
+model AwardCategory {
+  id           String                         @id @default(uuid())
+  eventId      String
+  name         String
+  description  String?
+  isVotingOpen Boolean                        @default(true)
+  createdAt    DateTime                       @default(now())
+  updatedAt    DateTime                       @updatedAt
+
+  event        Event                          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  contestants  ContestantCategoryAssignment[]
+
+  @@unique([eventId, name])
+  @@index([eventId])
+}
+
+model ContestantCategoryAssignment {
+  id              String        @id @default(uuid())
+  contestantId    String
+  awardCategoryId String
+  createdAt       DateTime      @default(now())
+
+  contestant      Contestant    @relation(fields: [contestantId], references: [id], onDelete: Cascade)
+  awardCategory   AwardCategory @relation(fields: [awardCategoryId], references: [id], onDelete: Cascade)
+
+  @@unique([contestantId, awardCategoryId])
+  @@index([contestantId])
+  @@index([awardCategoryId])
 }
 
 model EventAuditLog {
@@ -67,3 +153,4 @@ model EventAuditLog {
 
   @@index([eventId])
 }
+

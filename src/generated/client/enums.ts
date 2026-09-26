@@ -16,3 +16,37 @@ export const EventPublicationStatus = {
 
 export type EventPublicationStatus =
   (typeof EventPublicationStatus)[keyof typeof EventPublicationStatus];
+
+export const ContestantDivision = {
+  FEMALE: "FEMALE",
+  MALE: "MALE",
+  LGBTQ: "LGBTQ",
+  TEEN: "TEEN",
+} as const;
+
+export type ContestantDivision = (typeof ContestantDivision)[keyof typeof ContestantDivision];
+
+export const ContestantStatus = {
+  ACTIVE: "ACTIVE",
+  HIDDEN: "HIDDEN",
+  WITHDRAWN: "WITHDRAWN",
+} as const;
+
+export type ContestantStatus = (typeof ContestantStatus)[keyof typeof ContestantStatus];
+
+export const MediaType = {
+  PHOTO: "PHOTO",
+  VIDEO_EMBED: "VIDEO_EMBED",
+} as const;
+
+export type MediaType = (typeof MediaType)[keyof typeof MediaType];
+
+export const EmbedPlatform = {
+  YOUTUBE: "YOUTUBE",
+  TIKTOK: "TIKTOK",
+  INSTAGRAM: "INSTAGRAM",
+  FACEBOOK: "FACEBOOK",
+  NONE: "NONE",
+} as const;
+
+export type EmbedPlatform = (typeof EmbedPlatform)[keyof typeof EmbedPlatform];

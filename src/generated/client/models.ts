@@ -9,5 +9,8 @@
  */
 export type * from "./models/Event";
 export type * from "./models/Contestant";
+export type * from "./models/ContestantMedia";
+export type * from "./models/AwardCategory";
+export type * from "./models/ContestantCategoryAssignment";
 export type * from "./models/EventAuditLog";
 export type * from "./commonInputTypes";

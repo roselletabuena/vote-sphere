@@ -392,6 +392,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Event: "Event",
   Contestant: "Contestant",
+  ContestantMedia: "ContestantMedia",
+  AwardCategory: "AwardCategory",
+  ContestantCategoryAssignment: "ContestantCategoryAssignment",
   EventAuditLog: "EventAuditLog",
 } as const;
 
@@ -412,7 +415,13 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: "event" | "contestant" | "eventAuditLog";
+    modelProps:
+      | "event"
+      | "contestant"
+      | "contestantMedia"
+      | "awardCategory"
+      | "contestantCategoryAssignment"
+      | "eventAuditLog";
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -564,6 +573,232 @@ export type TypeMap<
         };
       };
     };
+    ContestantMedia: {
+      payload: Prisma.$ContestantMediaPayload<ExtArgs>;
+      fields: Prisma.ContestantMediaFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ContestantMediaFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ContestantMediaFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        findFirst: {
+          args: Prisma.ContestantMediaFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ContestantMediaFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        findMany: {
+          args: Prisma.ContestantMediaFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>[];
+        };
+        create: {
+          args: Prisma.ContestantMediaCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        createMany: {
+          args: Prisma.ContestantMediaCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ContestantMediaCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>[];
+        };
+        delete: {
+          args: Prisma.ContestantMediaDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        update: {
+          args: Prisma.ContestantMediaUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ContestantMediaDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ContestantMediaUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ContestantMediaUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>[];
+        };
+        upsert: {
+          args: Prisma.ContestantMediaUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantMediaPayload>;
+        };
+        aggregate: {
+          args: Prisma.ContestantMediaAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContestantMedia>;
+        };
+        groupBy: {
+          args: Prisma.ContestantMediaGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ContestantMediaGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ContestantMediaCountArgs<ExtArgs>;
+          result:
+            runtime.Types.Utils.Optional<Prisma.ContestantMediaCountAggregateOutputType> | number;
+        };
+      };
+    };
+    AwardCategory: {
+      payload: Prisma.$AwardCategoryPayload<ExtArgs>;
+      fields: Prisma.AwardCategoryFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.AwardCategoryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.AwardCategoryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        findFirst: {
+          args: Prisma.AwardCategoryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.AwardCategoryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        findMany: {
+          args: Prisma.AwardCategoryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>[];
+        };
+        create: {
+          args: Prisma.AwardCategoryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        createMany: {
+          args: Prisma.AwardCategoryCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.AwardCategoryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>[];
+        };
+        delete: {
+          args: Prisma.AwardCategoryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        update: {
+          args: Prisma.AwardCategoryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        deleteMany: {
+          args: Prisma.AwardCategoryDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.AwardCategoryUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.AwardCategoryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>[];
+        };
+        upsert: {
+          args: Prisma.AwardCategoryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AwardCategoryPayload>;
+        };
+        aggregate: {
+          args: Prisma.AwardCategoryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAwardCategory>;
+        };
+        groupBy: {
+          args: Prisma.AwardCategoryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AwardCategoryGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.AwardCategoryCountArgs<ExtArgs>;
+          result:
+            runtime.Types.Utils.Optional<Prisma.AwardCategoryCountAggregateOutputType> | number;
+        };
+      };
+    };
+    ContestantCategoryAssignment: {
+      payload: Prisma.$ContestantCategoryAssignmentPayload<ExtArgs>;
+      fields: Prisma.ContestantCategoryAssignmentFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ContestantCategoryAssignmentFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ContestantCategoryAssignmentFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        findFirst: {
+          args: Prisma.ContestantCategoryAssignmentFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ContestantCategoryAssignmentFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        findMany: {
+          args: Prisma.ContestantCategoryAssignmentFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>[];
+        };
+        create: {
+          args: Prisma.ContestantCategoryAssignmentCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        createMany: {
+          args: Prisma.ContestantCategoryAssignmentCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ContestantCategoryAssignmentCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>[];
+        };
+        delete: {
+          args: Prisma.ContestantCategoryAssignmentDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        update: {
+          args: Prisma.ContestantCategoryAssignmentUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ContestantCategoryAssignmentDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ContestantCategoryAssignmentUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ContestantCategoryAssignmentUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>[];
+        };
+        upsert: {
+          args: Prisma.ContestantCategoryAssignmentUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContestantCategoryAssignmentPayload>;
+        };
+        aggregate: {
+          args: Prisma.ContestantCategoryAssignmentAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContestantCategoryAssignment>;
+        };
+        groupBy: {
+          args: Prisma.ContestantCategoryAssignmentGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ContestantCategoryAssignmentGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ContestantCategoryAssignmentCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ContestantCategoryAssignmentCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     EventAuditLog: {
       payload: Prisma.$EventAuditLogPayload<ExtArgs>;
       fields: Prisma.EventAuditLogFieldRefs;
@@ -701,8 +936,16 @@ export const ContestantScalarFieldEnum = {
   eventId: "eventId",
   contestantNumber: "contestantNumber",
   name: "name",
+  division: "division",
+  status: "status",
+  hometown: "hometown",
+  heightCm: "heightCm",
   bio: "bio",
+  advocacy: "advocacy",
   avatarUrl: "avatarUrl",
+  instagramUrl: "instagramUrl",
+  tiktokUrl: "tiktokUrl",
+  facebookUrl: "facebookUrl",
   voteCount: "voteCount",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -710,6 +953,45 @@ export const ContestantScalarFieldEnum = {
 
 export type ContestantScalarFieldEnum =
   (typeof ContestantScalarFieldEnum)[keyof typeof ContestantScalarFieldEnum];
+
+export const ContestantMediaScalarFieldEnum = {
+  id: "id",
+  contestantId: "contestantId",
+  mediaType: "mediaType",
+  url: "url",
+  embedPlatform: "embedPlatform",
+  embedId: "embedId",
+  displayOrder: "displayOrder",
+  aspectRatio: "aspectRatio",
+  isCover: "isCover",
+  createdAt: "createdAt",
+} as const;
+
+export type ContestantMediaScalarFieldEnum =
+  (typeof ContestantMediaScalarFieldEnum)[keyof typeof ContestantMediaScalarFieldEnum];
+
+export const AwardCategoryScalarFieldEnum = {
+  id: "id",
+  eventId: "eventId",
+  name: "name",
+  description: "description",
+  isVotingOpen: "isVotingOpen",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type AwardCategoryScalarFieldEnum =
+  (typeof AwardCategoryScalarFieldEnum)[keyof typeof AwardCategoryScalarFieldEnum];
+
+export const ContestantCategoryAssignmentScalarFieldEnum = {
+  id: "id",
+  contestantId: "contestantId",
+  awardCategoryId: "awardCategoryId",
+  createdAt: "createdAt",
+} as const;
+
+export type ContestantCategoryAssignmentScalarFieldEnum =
+  (typeof ContestantCategoryAssignmentScalarFieldEnum)[keyof typeof ContestantCategoryAssignmentScalarFieldEnum];
 
 export const EventAuditLogScalarFieldEnum = {
   id: "id",
@@ -814,6 +1096,67 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Int[]">;
+
+/**
+ * Reference to a field of type 'ContestantDivision'
+ */
+export type EnumContestantDivisionFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "ContestantDivision"
+>;
+
+/**
+ * Reference to a field of type 'ContestantDivision[]'
+ */
+export type ListEnumContestantDivisionFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "ContestantDivision[]"
+>;
+
+/**
+ * Reference to a field of type 'ContestantStatus'
+ */
+export type EnumContestantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "ContestantStatus"
+>;
+
+/**
+ * Reference to a field of type 'ContestantStatus[]'
+ */
+export type ListEnumContestantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "ContestantStatus[]"
+>;
+
+/**
+ * Reference to a field of type 'MediaType'
+ */
+export type EnumMediaTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "MediaType">;
+
+/**
+ * Reference to a field of type 'MediaType[]'
+ */
+export type ListEnumMediaTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "MediaType[]"
+>;
+
+/**
+ * Reference to a field of type 'EmbedPlatform'
+ */
+export type EnumEmbedPlatformFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "EmbedPlatform"
+>;
+
+/**
+ * Reference to a field of type 'EmbedPlatform[]'
+ */
+export type ListEnumEmbedPlatformFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "EmbedPlatform[]"
+>;
 
 /**
  * Reference to a field of type 'Json'
@@ -994,6 +1337,9 @@ export type PrismaClientOptions =
 export type GlobalOmitConfig = {
   event?: Prisma.EventOmit;
   contestant?: Prisma.ContestantOmit;
+  contestantMedia?: Prisma.ContestantMediaOmit;
+  awardCategory?: Prisma.AwardCategoryOmit;
+  contestantCategoryAssignment?: Prisma.ContestantCategoryAssignmentOmit;
   eventAuditLog?: Prisma.EventAuditLogOmit;
 };
 

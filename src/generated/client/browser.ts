@@ -27,6 +27,21 @@ export type Event = Prisma.EventModel;
  */
 export type Contestant = Prisma.ContestantModel;
 /**
+ * Model ContestantMedia
+ *
+ */
+export type ContestantMedia = Prisma.ContestantMediaModel;
+/**
+ * Model AwardCategory
+ *
+ */
+export type AwardCategory = Prisma.AwardCategoryModel;
+/**
+ * Model ContestantCategoryAssignment
+ *
+ */
+export type ContestantCategoryAssignment = Prisma.ContestantCategoryAssignmentModel;
+/**
  * Model EventAuditLog
  *
  */
